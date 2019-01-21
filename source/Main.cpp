@@ -7,6 +7,7 @@
 
 #include "messaging/MessageBus.hpp"
 #include "messaging/Messages.hpp"
+#include "timing/PerfTiming.hpp"
 
 using namespace cobalt::messaging;
 
@@ -14,13 +15,12 @@ void beginCombat1Handler (
 	MessagePtr message
 ) {
 	auto bcMsg = std::static_pointer_cast<BeginCombat>(message);
-	std::cout << "Begin Combat 1 Found Message " << bcMsg->combatID << std::endl;
 }
 
 void beginCombat2Handler (
 	MessagePtr message
 ) {
-	std::cout << "Begin Combat 2 Found Message" << std::endl;
+	auto bcMsg = std::static_pointer_cast<BeginCombat>(message);
 }
 
 int
@@ -30,8 +30,15 @@ main () {
 	mb.addSubscriber(cobalt::messaging::MessageID::BEGIN_COMBAT, beginCombat1Handler);
 	mb.addSubscriber(cobalt::messaging::MessageID::BEGIN_COMBAT, beginCombat2Handler);
 
-	mb.sendMessage(std::make_shared<BeginCombat>(2));
-	mb.sendMessage(std::make_shared<BeginCombat>(4));
+	for (int j = 0; j < 1000; j++) {
+		cobalt::timing::StartTimer();
 
-	mb.notify();
+		for (int i = 0; i < 1000000; i++) {
+			mb.sendMessage(std::make_shared<BeginCombat>(i));	
+		}
+		
+		mb.notify();
+
+		std::cout << cobalt::timing::GetElapsedMilliseconds() << " milliseconds" << std::endl;
+	}
 }
