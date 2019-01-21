@@ -122,6 +122,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Main.cpp" />
+    <ClCompile Include="source\messaging\MessageBus.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\messaging\MessageBus.hpp" />
+    <ClInclude Include="include\messaging\Messages.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
