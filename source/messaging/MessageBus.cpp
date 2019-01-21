@@ -47,5 +47,9 @@ MessageBus::notify () {
 
 			messageQueue.pop();
 		}
+
+		// for some reason, here the queue isnt empty?
+		std::queue<MessagePtr> empty;
+		std::swap(m_unsentMessages[messageId], empty);
 	}
 }
