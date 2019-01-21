@@ -100,6 +100,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\alex\Documents\Projects\cobalt\lib\SFML\include;C:\Users\alex\Documents\Projects\cobalt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -127,6 +128,7 @@
   <ItemGroup>
     <ClInclude Include="include\messaging\MessageBus.hpp" />
     <ClInclude Include="include\messaging\Messages.hpp" />
+    <ClInclude Include="include\timing\PerfTiming.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
